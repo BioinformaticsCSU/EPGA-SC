@@ -1,6 +1,6 @@
 Latest Version
 ==============
-Please see the latest version of EPGA-SC:https://github.com/bioinfomaticsCSU/EPGA-SC
+Please see the latest version of EPGA-SC:https://github.com/BioinformaticsCSU/EPGA-SC
 
 
 License
@@ -76,4 +76,4 @@ Run command line: javac epga_sc.java
     
         /home/.../epga-sc/finalResults/Contigs.fa
 		
-		/home/.../epga-sc/finalResults/Scaffolds.fa
+        /home/.../epga-sc/finalResults/Scaffolds.fa
