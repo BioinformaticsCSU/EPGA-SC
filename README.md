@@ -57,16 +57,16 @@ Run command line: javac epga_sc.java
 	
 	     -Xmx256G <This parameter is only used when running large data sets (For example: the data set size exceeds 50G)>
 	     -R <The average length of read>
-		 -c <The k-mer size used in coverage estimate(Default value: 13)>
-		 -k <The k-mer size used in low depth reads assembly(Default value: 21)>
-		 -K <The k-mer size used in normal depth reads assembly(Default value: 31)>
-		 -t <The number of threads(Default value: 64)>
-		 -i <The value of insertsizes>
-		 -s <The standard devision of insertsizes(Default value: 0.1*insertsizes)>
-		 -l <The threshold of low depth k-mer(Default value: 0.1)>
-		 -r <The threshold of the number of low depth k-mer in a low depth reads(Default value: 0.1)>
-		 -q1 <The first FASTQ file>
-		 -q2 <The second FASTQ file>
+	     -c <The k-mer size used in coverage estimate(Default value: 13)>
+	     -k <The k-mer size used in low depth reads assembly(Default value: 21)>
+	     -K <The k-mer size used in normal depth reads assembly(Default value: 31)>
+	     -t <The number of threads(Default value: 64)>
+	     -i <The value of insertsizes>
+	     -s <The standard devision of insertsizes(Default value: 0.1*insertsizes)>
+	     -l <The threshold of low depth k-mer(Default value: 0.1)>
+	     -r <The threshold of the number of low depth k-mer in a low depth reads(Default value: 0.1)>
+	     -q1 <The first FASTQ file>
+	     -q2 <The second FASTQ file>
          -o  <The path used to save final assemblies>		 
 	
 
