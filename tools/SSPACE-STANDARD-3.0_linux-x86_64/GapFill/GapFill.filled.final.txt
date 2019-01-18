@@ -1,0 +1,65 @@
+>scaffold2|size264361:
+	gapnum=1	start=86429	end=86450	gapsize=21	reads=733	filled=0	ext1=0	ext2=0	merged=44	remaining=0	closed=yes
+>scaffold3|size225285:
+	gapnum=1	start=14569	end=14595	gapsize=26	reads=233	filled=0	ext1=0	ext2=0	merged=39	remaining=0	closed=yes
+>scaffold4|size221448:
+	gapnum=1	start=35961	end=36018	gapsize=57	reads=44	filled=34	ext1=0	ext2=34	merged=0	remaining=23	closed=no
+	gapnum=2	start=57133	end=57293	gapsize=160	reads=35	filled=65	ext1=65	ext2=0	merged=0	remaining=95	closed=no
+	gapnum=3	start=179906	end=179936	gapsize=30	reads=7	filled=0	ext1=0	ext2=0	merged=0	remaining=30	closed=no
+>scaffold5|size264524:
+	gapnum=1	start=215411	end=215437	gapsize=26	reads=1225	filled=20	ext1=10	ext2=10	merged=0	remaining=6	closed=no
+>scaffold7|size297210:
+	gapnum=1	start=204929	end=204950	gapsize=21	reads=14578	filled=21	ext1=16	ext2=15	merged=10	remaining=0	closed=yes
+	gapnum=2	start=205314	end=205335	gapsize=21	reads=15460	filled=20	ext1=10	ext2=10	merged=0	remaining=1	closed=no
+	gapnum=3	start=208447	end=208468	gapsize=21	reads=15373	filled=82	ext1=11	ext2=71	merged=0	remaining=1	closed=no
+>scaffold13|size172240:
+	gapnum=1	start=171930	end=171977	gapsize=47	reads=354	filled=52	ext1=10	ext2=42	merged=0	remaining=1	closed=no
+>scaffold15|size132923:
+	gapnum=1	start=130531	end=130579	gapsize=48	reads=118	filled=48	ext1=48	ext2=0	merged=0	remaining=1	closed=no
+	gapnum=2	start=132289	end=132318	gapsize=29	reads=239	filled=22	ext1=0	ext2=90	merged=68	remaining=0	closed=yes
+>scaffold16|size133485:
+	gapnum=1	start=1734	end=1755	gapsize=21	reads=116	filled=42	ext1=0	ext2=42	merged=0	remaining=1	closed=no
+>scaffold32|size72211:
+	gapnum=1	start=123	end=155	gapsize=32	reads=105	filled=0	ext1=0	ext2=0	merged=67	remaining=0	closed=yes
+>scaffold33|size95947:
+	gapnum=1	start=29748	end=29769	gapsize=21	reads=329	filled=0	ext1=0	ext2=0	merged=80	remaining=0	closed=yes
+>scaffold34|size64751:
+	gapnum=1	start=23499	end=23524	gapsize=25	reads=308	filled=0	ext1=0	ext2=0	merged=40	remaining=0	closed=yes
+>scaffold43|size50710:
+	gapnum=1	start=7987	end=8014	gapsize=27	reads=127	filled=63	ext1=37	ext2=36	merged=10	remaining=0	closed=yes
+>scaffold44|size48988:
+	gapnum=1	start=408	end=464	gapsize=56	reads=110	filled=82	ext1=46	ext2=46	merged=10	remaining=0	closed=yes
+>scaffold45|size48948:
+	gapnum=1	start=405	end=426	gapsize=21	reads=122	filled=82	ext1=41	ext2=41	merged=0	remaining=1	closed=no
+>scaffold52|size39267:
+	gapnum=1	start=1136	end=1157	gapsize=21	reads=5757	filled=40	ext1=25	ext2=25	merged=10	remaining=0	closed=yes
+>scaffold60|size29942:
+	gapnum=1	start=806	end=836	gapsize=30	reads=87	filled=69	ext1=0	ext2=69	merged=0	remaining=1	closed=no
+>scaffold72|size16633:
+	gapnum=1	start=16192	end=16218	gapsize=26	reads=7	filled=0	ext1=0	ext2=0	merged=0	remaining=26	closed=no
+>scaffold75|size14867:
+	gapnum=1	start=14708	end=14776	gapsize=68	reads=269	filled=50	ext1=30	ext2=30	merged=10	remaining=0	closed=yes
+>scaffold76|size14414:
+	gapnum=1	start=12377	end=12406	gapsize=29	reads=21	filled=23	ext1=9	ext2=24	merged=10	remaining=0	closed=yes
+>scaffold85|size10580:
+	gapnum=1	start=10429	end=10481	gapsize=52	reads=637	filled=103	ext1=57	ext2=56	merged=10	remaining=0	closed=yes
+>scaffold96|size5777:
+	gapnum=1	start=5590	end=5634	gapsize=44	reads=2839	filled=0	ext1=0	ext2=0	merged=32	remaining=0	closed=yes
+>scaffold97|size5728:
+	gapnum=1	start=144	end=168	gapsize=24	reads=1159	filled=0	ext1=0	ext2=0	merged=0	remaining=24	closed=no
+>scaffold99|size6699:
+	gapnum=1	start=5290	end=5311	gapsize=21	reads=125	filled=20	ext1=15	ext2=15	merged=10	remaining=0	closed=yes
+>scaffold110|size4945:
+	gapnum=1	start=531	end=552	gapsize=21	reads=10754	filled=59	ext1=35	ext2=34	merged=10	remaining=0	closed=yes
+>scaffold125|size2698:
+	gapnum=1	start=1796	end=1858	gapsize=62	reads=99	filled=77	ext1=44	ext2=43	merged=10	remaining=0	closed=yes
+>scaffold146|size1756:
+	gapnum=1	start=408	end=438	gapsize=30	reads=3	filled=10	ext1=0	ext2=10	merged=0	remaining=20	closed=no
+>scaffold162|size1299:
+	gapnum=1	start=1016	end=1046	gapsize=30	reads=35	filled=6	ext1=16	ext2=0	merged=10	remaining=0	closed=yes
+>scaffold177|size1159:
+	gapnum=1	start=816	end=846	gapsize=30	reads=5	filled=8	ext1=1	ext2=7	merged=0	remaining=22	closed=no
+>scaffold231|size609:
+	gapnum=1	start=339	end=389	gapsize=50	reads=137	filled=69	ext1=40	ext2=39	merged=10	remaining=0	closed=yes
+>scaffold257|size493:
+	gapnum=1	start=241	end=291	gapsize=50	reads=3	filled=0	ext1=0	ext2=0	merged=0	remaining=50	closed=no

@@ -1,0 +1,1 @@
+lib1 bwa ./Pfal/ERR034295_1.fastq ./Pfal/ERR034295_2.fastq 650 0.25 FR

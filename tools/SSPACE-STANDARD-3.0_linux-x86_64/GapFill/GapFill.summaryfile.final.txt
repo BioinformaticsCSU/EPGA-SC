@@ -1,0 +1,63 @@
+Your inserted inputs on [GapFiller_v1-10] at Thu Aug  9 07:31:35 2018:
+	-s /homed/liaoxingyu/EV_Assembly/SSPACE-STANDARD-3.0_linux-x86_64/scaffolds_sspace/scaffolds_sspace.final.scaffolds.fasta
+	-l ./config8.txt
+	-b ./GapFill
+	-o 2
+	-m 30
+	-r 0.7
+	-n 10
+	-T 48
+	-g 0
+	-d 50
+	-t 10
+	-i 1
+
+After iteration 1:
+------------------------------------------------------------
+
+
+GAPCLOSING STATS:
+------------------------------------------------------------
+
+	Closed 19 out of 35 gaps 
+	Closed 995 out of 1298 nucleotides
+
+------------------------------------------------------------
+
+
+------------------------------------------------------------
+ Scaffold statistics:
+------------------------------------------------------------
+
+	Original:
+		Total number of scaffolds = 488
+		Sum (bp) = 7032235
+			Total number of N's = 598
+			Sum (bp) no N's = 7031637
+		GC Content = 50.09%
+		Max scaffold size = 297210
+		Min scaffold size = 56
+		Average scaffold size = 14410
+		N25 = 203136
+		N50 = 112649
+		N75 = 54858
+
+	After gapclosing:
+		Total number of scaffolds = 488
+		Sum (bp) = 7032074
+			Total number of N's = 303
+			Sum (bp) no N's = 7031771
+		GC Content = 50.09%
+		Max scaffold size = 297272
+		Min scaffold size = 56
+		Average scaffold size = 14409
+		N25 = 203136
+		N50 = 112649
+		N75 = 54858
+
+------------------------------------------------------------
+
+
+Process run succesfully on Thu Aug  9 07:34:52 2018 in 3 minutes and 17 seconds
+
+
