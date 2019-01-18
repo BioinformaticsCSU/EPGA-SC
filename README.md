@@ -77,4 +77,3 @@ Run command line: javac epga_sc.java
         /home/.../epga-sc/finalResults/Contigs.fa
 		
 		/home/.../epga-sc/finalResults/Scaffolds.fa
-# Test
