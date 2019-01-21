@@ -69,6 +69,10 @@ Run command line: javac epga_sc.java
 	     -q2 <The second FASTQ file>
          -o  <The path used to save final assemblies>		 
 	
+	If the system prompts "operation not permitted" ,we need to run the following commands to modify the permissions of EPGA-SC folder.
+	
+	chmod -R 777  EPGA-SC-master
+	
 
 ### Output.
     
