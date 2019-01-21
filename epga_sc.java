@@ -725,11 +725,6 @@ public class epga_sc {
 		  {
 			  CommonClass.delAllFile(SSPACEFileDirectoy);
 		  }
-		  File HomeDirectoy = new File(ParentPath);
-		  if(HomeDirectoy.exists())
-		  {
-			  CommonClass.delAllFile(HomeDirectoy);
-		  }
 		  File LogFileDirectoy = new File(ParentPath+"/Log");
 		  if(LogFileDirectoy.exists())
 		  {
@@ -1482,7 +1477,7 @@ public class epga_sc {
 	  }
 	  else
 	  {
-		  System.out.println("\n -q1, -q2 an -o are three required parameters. \nPlease check the configuration of these three parameters.\n");
+		  System.out.println("\n -q1, -q2 and -o are three required parameters. \nPlease check the configuration of these three parameters.\n");
 	  }
    }
 }
