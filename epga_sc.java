@@ -836,7 +836,10 @@ public class epga_sc {
 	      //Step00-PRE-treatment.
 	      System.out.print("Step01: Parameters configuration");
 	      System.out.println(" [ R="+R+" c="+c+" k="+k+" K="+K+" t="+t+" i="+i+" s="+s+" l="+l+" r="+r+" ]");
-	      File ReadFiles=new File(ParentPath+"/readfile/read.fa");
+	      String [] q1_split = q1.split("/");
+		  String [] q1_name = q1_split[q1_split.length-1].split("_");
+		  String DataName=q1_name[0];
+		  File ReadFiles=new File(ParentPath+"/readfile/read.fa");
 	      if(ReadFiles.exists())
 	      {
 	    	  CommonClass.deleteFile(ReadFiles);
@@ -1386,10 +1389,10 @@ public class epga_sc {
 		  Runtime r_gzip1=Runtime.getRuntime();
 		  Runtime r_gzip2=Runtime.getRuntime();
 	      try{
-	    	    String[] cmd_gzip1 = { "sh", "-c", "gunzip "+ParentPath+"/Assembly/SPAdes/corrected/read_1.00.0_0.cor.fastq.gz"};
+	    	    String[] cmd_gzip1 = { "sh", "-c", "gunzip "+ParentPath+"/Assembly/SPAdes/corrected/"+DataName+"_1.00.0_0.cor.fastq.gz"};
 	    	    p_gzip1=r_gzip1.exec(cmd_gzip1);
 				p_gzip1.waitFor();
-				String[] cmd_gzip2 = { "sh", "-c", "gunzip "+ParentPath+"/Assembly/SPAdes/corrected/read_2.00.0_0.cor.fastq.gz"};
+				String[] cmd_gzip2 = { "sh", "-c", "gunzip "+ParentPath+"/Assembly/SPAdes/corrected/"+DataName+"_2.00.0_0.cor.fastq.gz"};
 				p_gzip2=r_gzip2.exec(cmd_gzip2);
 				p_gzip2.waitFor();
 	      }
@@ -1447,7 +1450,7 @@ public class epga_sc {
 		  //Write configure.
   	      File ScaffConfigFiles=new File(ParentPath+"/tools/SSPACE-STANDARD-3.0_linux-x86_64/");
   	      CommonClass.delSpecialFile(ScaffConfigFiles,"config",".txt");
-		  String Command1="lib1\tbwa\t"+ParentPath+"/Assembly/SPAdes/corrected/read_1.00.0_0.cor.fastq "+ParentPath+"/Assembly/SPAdes/corrected/read_2.00.0_0.cor.fastq "+i+"\t"+0.1+"\t"+"FR";
+		  String Command1="lib1\tbwa\t"+ParentPath+"/Assembly/SPAdes/corrected/"+DataName+"_1.00.0_0.cor.fastq "+ParentPath+"/Assembly/SPAdes/corrected/"+DataName+"_2.00.0_0.cor.fastq "+i+"\t"+0.1+"\t"+"FR";
 		  FileWriter writer= new FileWriter(ParentPath+"/tools/SSPACE-STANDARD-3.0_linux-x86_64/config.txt",true);
 		  writer.write(Command1+"\n");
 	      writer.close();
@@ -1462,14 +1465,14 @@ public class epga_sc {
 	      }
 	      //Output final assemblies.
 		  File FinalContigFile=new File(ParentPath+"/Assembly/EPGA-SC/FinalAssembly/contigs_corr.fa");
-		  File FinalScaffoldFile=new File(ParentPath+"/tools/SSPACE-STANDARD-3.0_linux-x86_64/scaffolds_sspace/scaffolds_sspace.final.scaffolds.fasta");
+		  File FinalScaffoldFile=new File(ParentPath+"/scaffolds_sspace/scaffolds_sspace.final.scaffolds.fasta");
 	      if(FinalContigFile.exists())
 	      {
 	    	  CommonClass.copyFile(ParentPath+"/Assembly/EPGA-SC/FinalAssembly/contigs_corr.fa", o+"/Contigs.fa");
 	      }
 	      if(FinalScaffoldFile.exists())
 	      {
-	    	  CommonClass.copyFile(ParentPath+"/tools/SSPACE-STANDARD-3.0_linux-x86_64/scaffolds_sspace/scaffolds_sspace.final.scaffolds.fasta", o+"/Scaffolds.fa");
+	    	  CommonClass.copyFile(ParentPath+"/scaffolds_sspace/scaffolds_sspace.final.scaffolds.fasta", o+"/Scaffolds.fa");
 	      }
 	      long orz_Scaffolding = Math.abs(startMem_Scaffolding - r_Scaffolding.freeMemory());
 	      long endTime_Scaffolding = System.currentTimeMillis();
