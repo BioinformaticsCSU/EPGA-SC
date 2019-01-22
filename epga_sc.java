@@ -836,9 +836,26 @@ public class epga_sc {
 	      //Step00-PRE-treatment.
 	      System.out.print("Step01: Parameters configuration");
 	      System.out.println(" [ R="+R+" c="+c+" k="+k+" K="+K+" t="+t+" i="+i+" s="+s+" l="+l+" r="+r+" ]");
-	      String [] q1_split = q1.split("/");
-		  String [] q1_name = q1_split[q1_split.length-1].split("_");
-		  String DataName=q1_name[0];
+		  String [] q1_split = q1.split("/");
+		  String DataName1="";
+		  if(q1_split[q1_split.length-1].endsWith(".fastq")){
+			  String [] q1_name = q1_split[q1_split.length-1].split(".fastq");
+		      DataName1=q1_name[0];
+		  }
+	      if(q1_split[q1_split.length-1].endsWith(".fq")){
+		      String [] q1_name = q1_split[q1_split.length-1].split(".fq");
+		      DataName1=q1_name[0];
+		  }
+		  String [] q2_split = q2.split("/");
+		  String DataName2="";
+		  if(q2_split[q2_split.length-1].endsWith(".fastq")){
+			  String [] q2_name = q2_split[q2_split.length-1].split(".fastq");
+		      DataName2=q2_name[0];
+		  }
+	      if(q2_split[q2_split.length-1].endsWith(".fq")){
+		      String [] q2_name = q2_split[q2_split.length-1].split(".fq");
+		      DataName2=q2_name[0];
+		  }
 		  File ReadFiles=new File(ParentPath+"/readfile/read.fa");
 	      if(ReadFiles.exists())
 	      {
@@ -1389,10 +1406,10 @@ public class epga_sc {
 		  Runtime r_gzip1=Runtime.getRuntime();
 		  Runtime r_gzip2=Runtime.getRuntime();
 	      try{
-	    	    String[] cmd_gzip1 = { "sh", "-c", "gunzip "+ParentPath+"/Assembly/SPAdes/corrected/"+DataName+"_1.00.0_0.cor.fastq.gz"};
+	    	    String[] cmd_gzip1 = { "sh", "-c", "gunzip "+ParentPath+"/Assembly/SPAdes/corrected/"+DataName1+".corr.00.0_0.cor.fastq.gz"};
 	    	    p_gzip1=r_gzip1.exec(cmd_gzip1);
 				p_gzip1.waitFor();
-				String[] cmd_gzip2 = { "sh", "-c", "gunzip "+ParentPath+"/Assembly/SPAdes/corrected/"+DataName+"_2.00.0_0.cor.fastq.gz"};
+				String[] cmd_gzip2 = { "sh", "-c", "gunzip "+ParentPath+"/Assembly/SPAdes/corrected/"+DataName2+".corr.00.0_0.cor.fastq.gz"};
 				p_gzip2=r_gzip2.exec(cmd_gzip2);
 				p_gzip2.waitFor();
 	      }
@@ -1450,7 +1467,7 @@ public class epga_sc {
 		  //Write configure.
   	      File ScaffConfigFiles=new File(ParentPath+"/tools/SSPACE-STANDARD-3.0_linux-x86_64/");
   	      CommonClass.delSpecialFile(ScaffConfigFiles,"config",".txt");
-		  String Command1="lib1\tbwa\t"+ParentPath+"/Assembly/SPAdes/corrected/"+DataName+"_1.00.0_0.cor.fastq "+ParentPath+"/Assembly/SPAdes/corrected/"+DataName+"_2.00.0_0.cor.fastq "+i+"\t"+0.1+"\t"+"FR";
+		  String Command1="lib1\tbwa\t"+ParentPath+"/Assembly/SPAdes/corrected/"+DataName1+".corr.00.0_0.cor.fastq "+ParentPath+"/Assembly/SPAdes/corrected/"+DataName2+".corr.00.0_0.cor.fastq "+i+"\t"+0.1+"\t"+"FR";
 		  FileWriter writer= new FileWriter(ParentPath+"/tools/SSPACE-STANDARD-3.0_linux-x86_64/config.txt",true);
 		  writer.write(Command1+"\n");
 	      writer.close();
