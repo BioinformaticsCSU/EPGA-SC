@@ -1454,7 +1454,34 @@ public class epga_sc {
 	      long startTime_merging = System.currentTimeMillis(); 
 	      Runtime r_merging = Runtime.getRuntime();
 	      long startMem_merging = r_merging.freeMemory();
-	      //Add more functions.
+	      //Loading low depth assemblies.
+	      int NumLow=0;
+	      File LowDepthAssemblies=new File(ParentPath+"/Assembly/EPGA-SC/LowDepthReads/scaffoldLong.fa");
+	      File NormalDepthAssemblies=new File(ParentPath+"/Assembly/EPGA-SC/FinalAssembly/contigs_corr.fa");
+	      if(LowDepthAssemblies.exists()&&NormalDepthAssemblies.exists()){
+		      int ArraySize_lowdepth=CommonClass.getFileLines(ParentPath+"/Assembly/EPGA-SC/LowDepthReads/scaffoldLong.fa")/2;
+			  String[] ReadSetArray_lowdepth=new String[ArraySize_lowdepth];
+			  int scount_lowdepth=CommonClass.FileToArray(ParentPath+"/Assembly/EPGA-SC/LowDepthReads/scaffoldLong.fa",ReadSetArray_lowdepth,">");			  
+			  int ArraySize_normaldepth=CommonClass.getFileLines(ParentPath+"/Assembly/EPGA-SC/FinalAssembly/contigs_corr.fa")/2;
+			  String[] ReadSetArray_normaldepth=new String[ArraySize_normaldepth];
+			  int scount_normaldepth=CommonClass.FileToArray(ParentPath+"/Assembly/EPGA-SC/FinalAssembly/contigs_corr.fa",ReadSetArray_normaldepth,">");
+			  if(scount_lowdepth>0&&scount_normaldepth>0){
+				  for(int z=0;z<scount_lowdepth;z++){
+					  int Flag=1;
+			    	  for(int b=0;b<scount_normaldepth;b++){
+			    		  if((ReadSetArray_normaldepth[b].contains(ReadSetArray_lowdepth[z]))||(ReadSetArray_normaldepth[b].contains(CommonClass.reverse(ReadSetArray_lowdepth[z])))){
+			    			  Flag=0;
+			    			  break;
+			    		  }  
+			    	  }
+			    	  if(Flag==1){
+		   	              FileWriter writer2= new FileWriter(ParentPath+"/Assembly/EPGA-SC/FinalAssembly/contigs_corr.fa",true);
+		                  writer2.write(">L"+(NumLow++)+"\n"+ReadSetArray_lowdepth[z]+"\n");
+		                  writer2.close();
+			    	  }
+			      }
+			  }
+	      }
 	      long orz_merging = Math.abs(startMem_merging - r_merging.freeMemory());
 	      long endTime_merging = System.currentTimeMillis();
 	      System.out.println(" [Time consumption:"+(endTime_merging-startTime_merging)+"ms. Memory consumption:"+(double)orz_merging/1000000000+"GB] ");
