@@ -1481,6 +1481,8 @@ public class epga_sc {
 			    	  }
 			      }
 			  }
+		      ReadSetArray_lowdepth=null;
+		      ReadSetArray_normaldepth=null;
 	      }
 	      long orz_merging = Math.abs(startMem_merging - r_merging.freeMemory());
 	      long endTime_merging = System.currentTimeMillis();
