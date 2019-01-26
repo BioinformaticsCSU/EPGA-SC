@@ -51,7 +51,7 @@ Run command line: javac epga_sc.java
 ### Run EPGA-SC.
 	
     Run command line:  
-	java -Xmx256G epga_sc.java -R 100 -c 13 -k 21 -K 31 -t 64 -q1 lib1.1.fastq -q2 lib1.2.fastq -o /home/epga-sc/finalResults/ [options] 
+	java -Xmx256G epga_sc -R 100 -c 13 -k 21 -K 31 -t 64 -q1 lib1.1.fastq -q2 lib1.2.fastq -o /home/epga-sc/finalResults/ [options] 
 	
 	[options]
 	
