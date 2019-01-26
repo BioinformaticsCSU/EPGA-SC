@@ -629,7 +629,7 @@ public class epga_sc {
 		int    i = 330;
 		double s = 30;
 		double l = 0.1;
-		double r = 0.1;
+		double r = 0.01;
 		String q1 = "";
 		String q2 = "";
 		String o  = "";
@@ -1101,7 +1101,7 @@ public class epga_sc {
 		  int scount_right=CommonClass.FileToArray(ParentPath+"/ReadFiles/read_right.fa",ReadSetArray_right,">");	
 		  System.out.print(" ArraySize_right:"+scount_right+" ");
 		  //LowFre HashTable
-		  int SizeOfLowFreDSK=CommonClass.getFileLines(ParentPath +"/KmerFiles/LowFrequencyKmer_All.fa")+100000;
+		  int SizeOfLowFreDSK=CommonClass.getFileLines(ParentPath +"/KmerFiles/LowFrequencyKmer_All.fa")+10000000;
 		  System.out.print(" LowFreKmerSize:"+SizeOfLowFreDSK);
 		  String LowFreHashTable_A[]=new String[SizeOfLowFreDSK];
 		  String LowFreHashTable_T[]=new String[SizeOfLowFreDSK];
