@@ -51,11 +51,11 @@ Run command line: javac epga_sc.java
 ### Run EPGA-SC.
 	
     Run command line:  
-	java -Xmx256G epga_sc -R 100 -c 13 -k 21 -K 31 -t 64 -q1 lib1.1.fastq -q2 lib1.2.fastq -o /home/epga-sc/finalResults/ [options] 
+	java -Xmx300G epga_sc -R 100 -c 13 -k 21 -K 31 -t 64 -q1 lib1.1.fastq -q2 lib1.2.fastq -o /home/epga-sc/finalResults/ [options] 
 	
 	[options]
 	
-	     -Xmx256G <This parameter is only used when running large data sets (For example: the data set size exceeds 5Gb)>
+	     -Xmx300G <This parameter is only used when running large data sets (For example: the data set size exceeds 5Gb)>
 	     -R <The average length of read>
 	     -c <The k-mer size used in coverage estimate(Default value: 13)>
 	     -k <The k-mer size used in low depth reads assembly(Default value: 21)>
