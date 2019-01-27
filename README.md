@@ -64,7 +64,7 @@ Run command line: javac epga_sc.java
 	     -i <The value of insertsizes>
 	     -s <The standard devision of insertsizes(Default value: 0.1*insertsizes)>
 	     -l <The threshold of low depth k-mer(Default value: 0.1)>
-	     -r <The threshold of the number of low depth k-mers in a low depth read(Default value: 0.01)>
+	     -r <The threshold of the number of low depth k-mers in a low depth read(Default value: 0.03)>
 	     -q1 <The first FASTQ file>
 	     -q2 <The second FASTQ file>
          -o  <The path is used to save final assemblies>		 

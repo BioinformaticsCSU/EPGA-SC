@@ -629,7 +629,7 @@ public class epga_sc {
 		int    i = 330;
 		double s = 30;
 		double l = 0.1;
-		double r = 0.01;
+		double r = 0.03;
 		String q1 = "";
 		String q2 = "";
 		String o  = "";
@@ -832,6 +832,12 @@ public class epga_sc {
 	      File QSstatisticsDirectory =new File(QSstatisticspath);  
 	      if  (!QSstatisticsDirectory.isDirectory()){ 
 	    	  QSstatisticsDirectory.mkdir();
+	      }
+		  //Save Final Assemblies.
+	      String FinalAssemblyPath = o;
+	      File FinalAssemblyDirectory =new File(FinalAssemblyPath);  
+	      if  (!FinalAssemblyDirectory.isDirectory()){ 
+	    	  FinalAssemblyDirectory.mkdir();
 	      }
 	      //Step00-PRE-treatment.
 	      System.out.print("Step01: Parameters configuration");
