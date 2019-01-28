@@ -1331,7 +1331,7 @@ public class epga_sc {
 	      long endTime_gp = System.currentTimeMillis();
 	      System.out.println(" [Time consumption:"+(endTime_gp-startTime_gp)+"ms. Memory consumption:"+orz_gp/1000000000+"GB] ");
 	      //Step10-Assembling low depth Paired-end reads.
-	      System.out.print("Step10: Assembling low depth Paired-end reads");
+	      System.out.print("Step10: Assembling of low depth Paired-end reads");
 	      long startTime_AssemblyLow = System.currentTimeMillis(); 
 	      Runtime r_AssemblyLow = Runtime.getRuntime();
 	      long startMem_AssemblyLow = r_AssemblyLow.freeMemory();
@@ -1363,7 +1363,7 @@ public class epga_sc {
 	      long endTime_AssemblyLow = System.currentTimeMillis();
 	      System.out.println(" [Time consumption:"+(endTime_AssemblyLow-startTime_AssemblyLow)+"ms. Memory consumption:"+orz_AssemblyLow/1000000000+"GB] ");
 	      //Step11-Assembling normal depth Paired-end reads .
-	      System.out.print("Step11: Assembling normal depth Paired-end reads");
+	      System.out.print("Step11: Assembling of normal depth Paired-end reads");
 		  long startTime_AssemblyNormal = System.currentTimeMillis(); 
 	      Runtime r_AssemblyNormal = Runtime.getRuntime();
 	      long startMem_AssemblyNormal = r_AssemblyNormal.freeMemory();
@@ -1394,7 +1394,44 @@ public class epga_sc {
 		  long orz_AssemblyNormal = Math.abs(startMem_AssemblyNormal - r_AssemblyNormal.freeMemory());
 	      long endTime_AssemblyNormal = System.currentTimeMillis();
 	      System.out.println(" [Time consumption:"+(endTime_AssemblyNormal-startTime_AssemblyNormal)+"ms. Memory consumption:"+(double)orz_AssemblyNormal/1000000000+"GB] ");
-	      System.out.print("Step12: Removing chimeric errors in assemblies");
+	      System.out.print("Step12: Merging and exstension of Assemblies");
+	      long startTime_merging = System.currentTimeMillis(); 
+	      Runtime r_merging = Runtime.getRuntime();
+	      long startMem_merging = r_merging.freeMemory();
+	      //Loading low depth assemblies.
+	      int NumLow=0;
+	      File LowDepthAssemblies=new File(ParentPath+"/Assembly/EPGA-SC/LowDepthReads/scaffoldLong.fa");
+	      File NormalDepthAssemblies=new File(ParentPath+"/Assembly/EPGA-SC/NormalDepthReads/scaffoldLong.fa");
+	      if(LowDepthAssemblies.exists()&&NormalDepthAssemblies.exists()){
+		      int ArraySize_lowdepth=CommonClass.getFileLines(ParentPath+"/Assembly/EPGA-SC/LowDepthReads/scaffoldLong.fa")/2;
+			  String[] ReadSetArray_lowdepth=new String[ArraySize_lowdepth];
+			  int scount_lowdepth=CommonClass.FileToArray(ParentPath+"/Assembly/EPGA-SC/LowDepthReads/scaffoldLong.fa",ReadSetArray_lowdepth,">");			  
+			  int ArraySize_normaldepth=CommonClass.getFileLines(ParentPath+"/Assembly/EPGA-SC/NormalDepthReads/scaffoldLong.fa")/2;
+			  String[] ReadSetArray_normaldepth=new String[ArraySize_normaldepth];
+			  int scount_normaldepth=CommonClass.FileToArray(ParentPath+"/Assembly/EPGA-SC/NormalDepthReads/scaffoldLong.fa",ReadSetArray_normaldepth,">");
+			  if(scount_lowdepth>0&&scount_normaldepth>0){
+				  for(int z=0;z<scount_lowdepth;z++){
+					  int Flag=1;
+			    	  for(int b=0;b<scount_normaldepth;b++){
+			    		  if((ReadSetArray_normaldepth[b].contains(ReadSetArray_lowdepth[z]))||(ReadSetArray_normaldepth[b].contains(CommonClass.reverse(ReadSetArray_lowdepth[z])))){
+			    			  Flag=0;
+			    			  break;
+			    		  }  
+			    	  }
+			    	  if(Flag==1){
+		   	              FileWriter writer2= new FileWriter(ParentPath+"/Assembly/EPGA-SC/NormalDepthReads/scaffoldLong.fa",true);
+		                  writer2.write(">L"+(NumLow++)+"\n"+ReadSetArray_lowdepth[z]+"\n");
+		                  writer2.close();
+			    	  }
+			      }
+			  }
+		      ReadSetArray_lowdepth=null;
+		      ReadSetArray_normaldepth=null;
+	      }
+	      long orz_merging = Math.abs(startMem_merging - r_merging.freeMemory());
+	      long endTime_merging = System.currentTimeMillis();
+	      System.out.println(" [Time consumption:"+(endTime_merging-startTime_merging)+"ms. Memory consumption:"+(double)orz_merging/1000000000+"GB] ");	      
+	      System.out.print("Step13: Removing chimeric errors in assemblies");
 	      long startTime_chimeric = System.currentTimeMillis(); 
 	      Runtime r_chimeric = Runtime.getRuntime();
 	      long startMem_chimeric = r_chimeric.freeMemory();
@@ -1420,7 +1457,7 @@ public class epga_sc {
 				p_gzip2.waitFor();
 	      }
 	      catch(Exception e){
-	    	    System.out.println("Step14 Scaffolding pre-process:"+e.getMessage());
+	    	    System.out.println("Step12  Error Removing chimeric errors in assemblies:"+e.getMessage());
 	    	    e.printStackTrace();
 	      }
 	      //Remove MUMmer files.
@@ -1446,7 +1483,7 @@ public class epga_sc {
 	    	    pk_sam2bam.waitFor();
 	      }
 	      catch(Exception e){
-	    	    System.out.println("Step12 Align Error:"+e.getMessage());
+	    	    System.out.println("Step13 Align Error:"+e.getMessage());
 	    	    e.printStackTrace();
 	      }
 	      //Break the miss-assembly.
@@ -1456,43 +1493,6 @@ public class epga_sc {
 	      long orz_chimeric = Math.abs(startMem_chimeric - r_chimeric.freeMemory());
 	      long endTime_chimeric = System.currentTimeMillis();
 	      System.out.println(" Time consumption:"+(endTime_chimeric-startTime_chimeric)+"ms. Memory consumption:"+(double)orz_chimeric/1000000000+"GB] ");
-	      System.out.print("Step12: Merging and exstension of Assemblies");
-	      long startTime_merging = System.currentTimeMillis(); 
-	      Runtime r_merging = Runtime.getRuntime();
-	      long startMem_merging = r_merging.freeMemory();
-	      //Loading low depth assemblies.
-	      int NumLow=0;
-	      File LowDepthAssemblies=new File(ParentPath+"/Assembly/EPGA-SC/LowDepthReads/scaffoldLong.fa");
-	      File NormalDepthAssemblies=new File(ParentPath+"/Assembly/EPGA-SC/FinalAssembly/contigs_corr.fa");
-	      if(LowDepthAssemblies.exists()&&NormalDepthAssemblies.exists()){
-		      int ArraySize_lowdepth=CommonClass.getFileLines(ParentPath+"/Assembly/EPGA-SC/LowDepthReads/scaffoldLong.fa")/2;
-			  String[] ReadSetArray_lowdepth=new String[ArraySize_lowdepth];
-			  int scount_lowdepth=CommonClass.FileToArray(ParentPath+"/Assembly/EPGA-SC/LowDepthReads/scaffoldLong.fa",ReadSetArray_lowdepth,">");			  
-			  int ArraySize_normaldepth=CommonClass.getFileLines(ParentPath+"/Assembly/EPGA-SC/FinalAssembly/contigs_corr.fa")/2;
-			  String[] ReadSetArray_normaldepth=new String[ArraySize_normaldepth];
-			  int scount_normaldepth=CommonClass.FileToArray(ParentPath+"/Assembly/EPGA-SC/FinalAssembly/contigs_corr.fa",ReadSetArray_normaldepth,">");
-			  if(scount_lowdepth>0&&scount_normaldepth>0){
-				  for(int z=0;z<scount_lowdepth;z++){
-					  int Flag=1;
-			    	  for(int b=0;b<scount_normaldepth;b++){
-			    		  if((ReadSetArray_normaldepth[b].contains(ReadSetArray_lowdepth[z]))||(ReadSetArray_normaldepth[b].contains(CommonClass.reverse(ReadSetArray_lowdepth[z])))){
-			    			  Flag=0;
-			    			  break;
-			    		  }  
-			    	  }
-			    	  if(Flag==1){
-		   	              FileWriter writer2= new FileWriter(ParentPath+"/Assembly/EPGA-SC/FinalAssembly/contigs_corr.fa",true);
-		                  writer2.write(">L"+(NumLow++)+"\n"+ReadSetArray_lowdepth[z]+"\n");
-		                  writer2.close();
-			    	  }
-			      }
-			  }
-		      ReadSetArray_lowdepth=null;
-		      ReadSetArray_normaldepth=null;
-	      }
-	      long orz_merging = Math.abs(startMem_merging - r_merging.freeMemory());
-	      long endTime_merging = System.currentTimeMillis();
-	      System.out.println(" [Time consumption:"+(endTime_merging-startTime_merging)+"ms. Memory consumption:"+(double)orz_merging/1000000000+"GB] ");
 	      System.out.print("Step14: Scaffolding");
 	      long startTime_Scaffolding = System.currentTimeMillis(); 
 	      Runtime r_Scaffolding = Runtime.getRuntime();
