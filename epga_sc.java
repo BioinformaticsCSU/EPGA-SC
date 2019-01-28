@@ -629,7 +629,7 @@ public class epga_sc {
 		int    i = 330;
 		double s = 30;
 		double l = 0.1;
-		double r = 0.03;
+		double r = 0.1;
 		String q1 = "";
 		String q2 = "";
 		String o  = "";
