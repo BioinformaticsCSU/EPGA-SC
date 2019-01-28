@@ -1412,10 +1412,10 @@ public class epga_sc {
 		  Runtime r_gzip1=Runtime.getRuntime();
 		  Runtime r_gzip2=Runtime.getRuntime();
 	      try{
-	    	    String[] cmd_gzip1 = { "sh", "-c", "gunzip "+ParentPath+"/Assembly/SPAdes/corrected/"+DataName1+".corr.00.0_0.cor.fastq.gz"};
+	    	    String[] cmd_gzip1 = { "sh", "-c", "gunzip "+ParentPath+"/Assembly/SPAdes/corrected/"+DataName1+".00.0_0.cor.fastq.gz"};
 	    	    p_gzip1=r_gzip1.exec(cmd_gzip1);
 				p_gzip1.waitFor();
-				String[] cmd_gzip2 = { "sh", "-c", "gunzip "+ParentPath+"/Assembly/SPAdes/corrected/"+DataName2+".corr.00.0_0.cor.fastq.gz"};
+				String[] cmd_gzip2 = { "sh", "-c", "gunzip "+ParentPath+"/Assembly/SPAdes/corrected/"+DataName2+".00.0_0.cor.fastq.gz"};
 				p_gzip2=r_gzip2.exec(cmd_gzip2);
 				p_gzip2.waitFor();
 	      }
@@ -1502,7 +1502,7 @@ public class epga_sc {
 		  //Write configure.
   	      File ScaffConfigFiles=new File(ParentPath+"/tools/SSPACE-STANDARD-3.0_linux-x86_64/");
   	      CommonClass.delSpecialFile(ScaffConfigFiles,"config",".txt");
-		  String Command1="lib1\tbwa\t"+ParentPath+"/Assembly/SPAdes/corrected/"+DataName1+".corr.00.0_0.cor.fastq "+ParentPath+"/Assembly/SPAdes/corrected/"+DataName2+".corr.00.0_0.cor.fastq "+i+"\t"+0.1+"\t"+"FR";
+		  String Command1="lib1\tbwa\t"+ParentPath+"/Assembly/SPAdes/corrected/"+DataName1+".00.0_0.cor.fastq "+ParentPath+"/Assembly/SPAdes/corrected/"+DataName2+".00.0_0.cor.fastq "+i+"\t"+0.1+"\t"+"FR"+"\n"+"lib2\tbwa\t"+ParentPath+"/ReadFiles/read_left.fa "+ParentPath+"/ReadFiles/read_right.fa "+i+"\t"+0.1+"\t"+"FR";
 		  FileWriter writer= new FileWriter(ParentPath+"/tools/SSPACE-STANDARD-3.0_linux-x86_64/config.txt",true);
 		  writer.write(Command1+"\n");
 	      writer.close();
