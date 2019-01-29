@@ -626,7 +626,7 @@ public class epga_sc {
 		int    k = 21;
 		int    K = 31;
 		int    t = 64;
-		int    i = 330;
+		int    i = 267;
 		double s = 30;
 		double l = 0.1;
 		double r = 0.1;
@@ -1399,14 +1399,14 @@ public class epga_sc {
 	      Runtime r_merging = Runtime.getRuntime();
 	      long startMem_merging = r_merging.freeMemory();
 	      //Loading low depth assemblies.
-	      int NumLow=0;
+	      int NumContigs=0;
 	      File LowDepthAssemblies=new File(ParentPath+"/Assembly/EPGA-SC/LowDepthReads/scaffoldLong.fa");
 	      File NormalDepthAssemblies=new File(ParentPath+"/Assembly/EPGA-SC/NormalDepthReads/scaffoldLong.fa");
 	      if(LowDepthAssemblies.exists()&&NormalDepthAssemblies.exists()){
-		      int ArraySize_lowdepth=CommonClass.getFileLines(ParentPath+"/Assembly/EPGA-SC/LowDepthReads/scaffoldLong.fa")/2;
+		      int ArraySize_lowdepth=CommonClass.getFileLines(ParentPath+"/Assembly/EPGA-SC/LowDepthReads/scaffoldLong.fa");
 			  String[] ReadSetArray_lowdepth=new String[ArraySize_lowdepth];
 			  int scount_lowdepth=CommonClass.FileToArray(ParentPath+"/Assembly/EPGA-SC/LowDepthReads/scaffoldLong.fa",ReadSetArray_lowdepth,">");			  
-			  int ArraySize_normaldepth=CommonClass.getFileLines(ParentPath+"/Assembly/EPGA-SC/NormalDepthReads/scaffoldLong.fa")/2;
+			  int ArraySize_normaldepth=CommonClass.getFileLines(ParentPath+"/Assembly/EPGA-SC/NormalDepthReads/scaffoldLong.fa");
 			  String[] ReadSetArray_normaldepth=new String[ArraySize_normaldepth];
 			  int scount_normaldepth=CommonClass.FileToArray(ParentPath+"/Assembly/EPGA-SC/NormalDepthReads/scaffoldLong.fa",ReadSetArray_normaldepth,">");
 			  if(scount_lowdepth>0&&scount_normaldepth>0){
@@ -1419,11 +1419,25 @@ public class epga_sc {
 			    		  }  
 			    	  }
 			    	  if(Flag==1){
-		   	              FileWriter writer2= new FileWriter(ParentPath+"/Assembly/EPGA-SC/NormalDepthReads/scaffoldLong.fa",true);
-		                  writer2.write(">L"+(NumLow++)+"\n"+ReadSetArray_lowdepth[z]+"\n");
-		                  writer2.close();
+			    		  ReadSetArray_lowdepth[z]="#"+ReadSetArray_lowdepth[z];
 			    	  }
 			      }
+			  }
+			  for(int g=0;g<scount_normaldepth;g++)
+			  {
+		          FileWriter writer2= new FileWriter(ParentPath+"/Assembly/EPGA-SC/NormalDepthReads/scaffoldLong.Merge.fa",true);
+	              writer2.write(">"+(NumContigs++)+"--"+(ReadSetArray_normaldepth[g].length())+"\n"+ReadSetArray_normaldepth[g]+"\n");
+	              writer2.close();
+			  }
+			  for(int g=0;g<scount_lowdepth;g++)
+			  {
+				  if(ReadSetArray_lowdepth[g].charAt(0)=='#')
+				  {
+					  String WriteString=ReadSetArray_lowdepth[g].substring(1, ReadSetArray_lowdepth[g].length());
+			          FileWriter writer2= new FileWriter(ParentPath+"/Assembly/EPGA-SC/NormalDepthReads/scaffoldLong.Merge.fa",true);
+		              writer2.write(">"+(NumContigs++)+"--"+(WriteString.length())+"\n"+WriteString+"\n");
+		              writer2.close();
+				  }
 			  }
 		      ReadSetArray_lowdepth=null;
 		      ReadSetArray_normaldepth=null;
@@ -1470,7 +1484,7 @@ public class epga_sc {
 	      CommonClass.delSpecialFile(BamFiles,"MUMmerGroupRecords",".fa");
 	      try{
 	    	    //Index.
-	    	    String[] cmd_nucmer = { "sh", "-c", ParentPath+"/tools/MUMmer3.23/nucmer -c 50 -p "+ParentPath+"/Alignments/Data_nucmer "+ParentPath+"/Assembly/EPGA-SC/NormalDepthReads/scaffoldLong.fa "+ParentPath+"/Assembly/SPAdes/scaffolds.ChangeLines.fasta"};
+	    	    String[] cmd_nucmer = { "sh", "-c", ParentPath+"/tools/MUMmer3.23/nucmer -c 50 -p "+ParentPath+"/Alignments/Data_nucmer "+ParentPath+"/Assembly/EPGA-SC/NormalDepthReads/scaffoldLong.Merge.fa "+ParentPath+"/Assembly/SPAdes/scaffolds.ChangeLines.fasta"};
 	    	    pk_index=k_index.exec(cmd_nucmer);
 	    	    pk_index.waitFor();
 				//Mapping.
@@ -1489,7 +1503,7 @@ public class epga_sc {
 	      //Break the miss-assembly.
   	      File Corr_contigs=new File(ParentPath+"/Assembly/EPGA-SC/FinalAssembly/");
   	      CommonClass.delSpecialFile(Corr_contigs,"contigs_corr",".fa");
-	      CommonClass.breakErrorPoints(R,ParentPath,ParentPath+"/Alignments/Data_coords.txt",ParentPath+"/Assembly/EPGA-SC/NormalDepthReads/scaffoldLong.fa",ParentPath+"/Assembly/SPAdes/scaffolds.ChangeLines.fasta",ParentPath+"/Assembly/EPGA-SC/FinalAssembly","200");
+	      CommonClass.breakErrorPoints(R,ParentPath,ParentPath+"/Alignments/Data_coords.txt",ParentPath+"/Assembly/EPGA-SC/NormalDepthReads/scaffoldLong.Merge.fa",ParentPath+"/Assembly/SPAdes/scaffolds.ChangeLines.fasta",ParentPath+"/Assembly/EPGA-SC/FinalAssembly","200");
 	      long orz_chimeric = Math.abs(startMem_chimeric - r_chimeric.freeMemory());
 	      long endTime_chimeric = System.currentTimeMillis();
 	      System.out.println(" Time consumption:"+(endTime_chimeric-startTime_chimeric)+"ms. Memory consumption:"+(double)orz_chimeric/1000000000+"GB] ");
