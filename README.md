@@ -76,7 +76,7 @@ Run command line: javac epga_sc.java
 
 ### Output.
     
-	(1)The final assemblies will be stored in the path specified by '-o'.
+	The final assemblies will be stored in the path specified by '-o'. (For example: -o /home/.../epga-sc/finalResults/ , the final assemblies will be stored in the following path.)
     
         /home/.../epga-sc/finalResults/Contigs.fa
 		
