@@ -1442,6 +1442,13 @@ public class epga_sc {
 		      ReadSetArray_lowdepth=null;
 		      ReadSetArray_normaldepth=null;
 	      }
+		  else{
+			  File NormalScaffFile=new File(ParentPath+"/Assembly/EPGA-SC/LowDepthReads/scaffoldLong.fa");
+	          if(NormalScaffFile.exists())
+	          {
+	    	     CommonClass.copyFile(ParentPath+"/Assembly/EPGA-SC/LowDepthReads/scaffoldLong.fa", ParentPath+"/Assembly/EPGA-SC/NormalDepthReads/scaffoldLong.Merge.fa");
+	          }
+		  }
 	      long orz_merging = Math.abs(startMem_merging - r_merging.freeMemory());
 	      long endTime_merging = System.currentTimeMillis();
 	      System.out.println(" [Time consumption:"+(endTime_merging-startTime_merging)+"ms. Memory consumption:"+(double)orz_merging/1000000000+"GB] ");	      
