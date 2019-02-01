@@ -1015,7 +1015,7 @@ public class epga_sc {
 	      }
 	      double KmerDepth=CommonClass.EstimatingKmerDepth(ParentPath+"/KmerFiles/gce.error",ParentPath);
 		  double ReadDepth=(KmerDepth*R)/(R-k+1);
-		  System.out.print("[K-mer coverage:"+KmerDepth+" Read Coverage:"+ReadDepth);
+		  System.out.print(" [ K-mer coverage:"+KmerDepth+" Read Coverage:"+ReadDepth);
 		  long orz_tgce = Math.abs(startMem_tgce - r_tgce.freeMemory());
 	      long endTime_tgce = System.currentTimeMillis();
 	      System.out.println(" Time consumption:"+(endTime_tgce-startTime_tgce)+"ms. Memory consumption:"+(double)orz_tgce/1000000000+"GB] ");
