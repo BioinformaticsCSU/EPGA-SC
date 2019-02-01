@@ -683,6 +683,7 @@ public class epga_sc {
 		  File directory = new File(".");
 		  String ParentPath=directory.getCanonicalPath();
 		  //Delete some required directories.
+		  CommonClass.delSpecialFile(directory,"kmerFrequency",".fa");
 		  File CorrectedDirectoy = new File(ParentPath+"/Assembly");
 		  if(CorrectedDirectoy.exists())
 		  {
@@ -997,11 +998,10 @@ public class epga_sc {
 	      long endTime2 = System.currentTimeMillis();
 	      System.out.println(" [Time consumption:"+(endTime2-startTime2)+"ms. Memory consumption:"+(double)orz2/1000000000+"GB] ");
 	      //Step04-start.  
-	      System.out.println("Step04: Estimating the average coverage of k-mers");
+	      System.out.print("Step04: Estimating the average coverage of k-mers");
 	      long startTime_tgce = System.currentTimeMillis(); 
 	      Runtime r_tgce = Runtime.getRuntime();
 	      long startMem_tgce = r_tgce.freeMemory();
-		  System.out.println("=================Process Start==================");
 		  Process p_gce=null;
 		  Runtime r_gce=Runtime.getRuntime();
 	      try{
@@ -1019,7 +1019,6 @@ public class epga_sc {
 		  long orz_tgce = Math.abs(startMem_tgce - r_tgce.freeMemory());
 	      long endTime_tgce = System.currentTimeMillis();
 	      System.out.println(" Time consumption:"+(endTime_tgce-startTime_tgce)+"ms. Memory consumption:"+(double)orz_tgce/1000000000+"GB] ");
-	      System.out.println("=================Process  End==================");
 	      //Step05-Assembly.
 	      System.out.print("Step05: SPAdes assembly");
 		  long startTime_assembly = System.currentTimeMillis(); 
@@ -1338,6 +1337,8 @@ public class epga_sc {
 	      //Assembly start.
 		  Process p_assemblylow=null;
 		  Runtime r_assemblylow=Runtime.getRuntime();
+		  CommonClass.delSpecialFile(directory,"DATA",".fa");
+		  CommonClass.delSpecialFile(directory,"kmerFrequency",".fa");
 	      try{
 	    	    String[] cmd_assemblylow = { "sh", "-c", ParentPath+"/tools/epga "+ParentPath+"/ReadFiles/LowDepthReads.fa "+i+" "+s+" "+k+" 16"};
 	    	    p_assemblylow=r_assemblylow.exec(cmd_assemblylow);
@@ -1358,6 +1359,7 @@ public class epga_sc {
 	    	  CommonClass.copyFile(ParentPath+"/scaffoldLong.fa", ParentPath+"/Assembly/EPGA-SC/LowDepthReads/scaffoldLong.fa");
 	      }
 	      CommonClass.delSpecialFile(directory,"DATA",".fa");
+		  CommonClass.delSpecialFile(directory,"kmerFrequency",".fa");
 		  //Assembly end.
 	      long orz_AssemblyLow = Math.abs(startMem_AssemblyLow - r_AssemblyLow.freeMemory());
 	      long endTime_AssemblyLow = System.currentTimeMillis();
@@ -1443,10 +1445,10 @@ public class epga_sc {
 		      ReadSetArray_normaldepth=null;
 	      }
 		  else{
-			  File NormalScaffFile=new File(ParentPath+"/Assembly/EPGA-SC/LowDepthReads/scaffoldLong.fa");
+			  File NormalScaffFile=new File(ParentPath+"/Assembly/EPGA-SC/NormalDepthReads/scaffoldLong.fa");
 	          if(NormalScaffFile.exists())
 	          {
-	    	     CommonClass.copyFile(ParentPath+"/Assembly/EPGA-SC/LowDepthReads/scaffoldLong.fa", ParentPath+"/Assembly/EPGA-SC/NormalDepthReads/scaffoldLong.Merge.fa");
+	    	     CommonClass.copyFile(ParentPath+"/Assembly/EPGA-SC/NormalDepthReads/scaffoldLong.fa", ParentPath+"/Assembly/EPGA-SC/NormalDepthReads/scaffoldLong.Merge.fa");
 	          }
 		  }
 	      long orz_merging = Math.abs(startMem_merging - r_merging.freeMemory());
