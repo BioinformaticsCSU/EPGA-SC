@@ -6,7 +6,7 @@ Please see the latest version of EPGA-SC:https://github.com/BioinformaticsCSU/EP
 License
 =======
 
-Copyright (C) 2017 Jianxin Wang(jxwang@mail.csu.edu.cn), Xingyu Liao(liaoxingyu@csu.edu.cn)
+Copyright (C) 2019 Jianxin Wang(jxwang@mail.csu.edu.cn), Xingyu Liao(liaoxingyu@csu.edu.cn)
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -44,40 +44,44 @@ When running EPGA-SC from GitHub source the following tools are required:
 
 EPGA-SC is written Java and therefore will require a machine with jdk pre-installed.
 
-Create a main directory (eg:EPGA-SC). Copy all source code to this directory.
+Create a main directory (eg:EPGA-SC-master). Copy all source code to this directory.
 
 Run command line: javac epga_sc.java 
 
 ### Run EPGA-SC.
+
+[Usage]:
+
+ java [options] epga_sc [main arguments]
+
+[options]:
+
+ * -Xmx300G : This parameter is only used when working with large data sets.
+
+[Main arguments]:
+ 
+ * -R  <int>: The average length of read (100).
+ * -c  <int>: The k-mer size is used in coverage estimation (13bp).
+ * -k  <int>: The k-mer size is used in low depth reads assembly (21bp).
+ * -K  <int>: The k-mer size is used in normal depth reads assembly (31bp).
+ * -t  <int>: The number of threads (64).
+ * -i  <int>: The average value of insertsizes.
+ * -s  <double>: The standard devision of insertsizes (0.1*insertsizes).
+ * -l  <double>: The threshold of filtering low depth k-mer (0.1).
+ * -r  <double>: The threshold of the number of low depth k-mers in a low depth read (0.1).
+ * -q1 <string>: The file with left reads for paired-end reads.
+ * -q2 <string>: The file with right reads for paired-end reads.
+ * -o  <string>: The path used to save the final assemblies.
+		 
+    If the system prompts "operation not permitted", we need to run the following command to modify the permissions of the EPGA-SC folder.
 	
-    Run command line:  
-	java -Xmx300G epga_sc -R 100 -c 13 -k 21 -K 31 -t 64 -q1 lib1.1.fastq -q2 lib1.2.fastq -o /home/epga-sc/finalResults/ [options] 
-	
-	[options]
-	
-	     -Xmx300G <This parameter is only used when running large data sets (For example: the data set size exceeds 5Gb)>
-	     -R <The average length of read>
-	     -c <The k-mer size is used in coverage estimation(Default value: 13)>
-	     -k <The k-mer size is used in low depth reads assembly(Default value: 21)>
-	     -K <The k-mer size is used in normal depth reads assembly(Default value: 31)>
-	     -t <The number of threads(Default value: 64)>
-	     -i <The value of insertsizes>
-	     -s <The standard devision of insertsizes(Default value: 0.1*insertsizes)>
-	     -l <The threshold of low depth k-mer(Default value: 0.1)>
-	     -r <The threshold of the number of low depth k-mers in a low depth read(Default value: 0.1)>
-	     -q1 <The first FASTQ file>
-	     -q2 <The second FASTQ file>
-         -o  <The path is used to save final assemblies>		 
-	
-	If the system prompts "operation not permitted", we need to run the following command to modify the permissions of the EPGA-SC folder.
-	
-	chmod -R 777  EPGA-SC-master
+    chmod -R 777  EPGA-SC-master
 	
 
 ### Output.
     
-	The final assemblies will be stored in the path specified by '-o'. (For example: -o /home/.../epga-sc/finalResults/ , the final assemblies will be stored in the following path.)
+	The final assemblies will be stored in the path specified by '-o'. (For example: -o /home/.../EPGA-SC-master/finalResults/ , the final assemblies will be stored in the following path.)
     
-        /home/.../epga-sc/finalResults/Contigs.fa
+        /home/.../EPGA-SC-master/finalResults/Contigs.fa
 		
-        /home/.../epga-sc/finalResults/Scaffolds.fa
+        /home/.../EPGA-SC-master/finalResults/Scaffolds.fa
