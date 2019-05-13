@@ -42,7 +42,7 @@ When running EPGA-SC from GitHub source the following tools are required:
  
 ### Install EPGA-SC
 
-EPGA-SC is written Java and therefore will require a machine with jdk pre-installed.
+EPGA-SC is written in Java and therefore will require a machine with jdk pre-installed.
 
 Create a main directory (eg:EPGA-SC-master). Copy all source code to this directory.
 
